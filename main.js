@@ -72,7 +72,7 @@ searchButton.addEventListener('click', () => {
       //Resetting character info to search another character
       characterInfo.innerText = ""
       //setting card img to user's selected character
-      img.src = data.sprites.front_default;
+      img.src = data.sprites.other["official-artwork"].front_default;
       let character1Img = img.src
       //making the card visible
       characterCard.style.opacity = "10";
@@ -96,10 +96,17 @@ searchButton.addEventListener('click', () => {
       userInput.value = "";
       
 
+
+
+      //data.sprites.other["official-artwork"].front_default
+
+
+
+
       //Moves arrow event listener
       movesArrowButton.addEventListener("click", () => {
       //new image for the moves card
-      characterImg2.src = data.sprites.other.dream_world.front_default;
+      characterImg2.src = data.sprites.other["official-artwork"].front_default;
        
       //character moves data
       characterInfo2.innerText = `${data.name} Moves: \n`
@@ -157,6 +164,14 @@ searchButton.addEventListener('click', () => {
           characterCard2.style.display = "none"
           
          
+
+          
+
+
+
+
+
+
           searchButton.disabled = "true"
         })
 
@@ -173,7 +188,7 @@ searchButton.addEventListener('click', () => {
           searchButton.style.display = "none"
 
           //setting card img to user's selected character
-          cardGroupImg.src = character1Img
+          cardGroupImg.src = data.sprites.other["official-artwork"].front_default
           //making the card visible
           
           //characters data
@@ -204,7 +219,7 @@ searchButton.addEventListener('click', () => {
             
           
             //2nd Characters data
-            cardGroupImg2.src = data2.sprites.front_default;
+            cardGroupImg2.src = data2.sprites.other["official-artwork"].front_default;
             cardGroupCharacterName2.innerHTML = `${data2.name.toUpperCase()}`;
             cardGroupCharacterInfo2.innerText += `\n Height: ${data2.height}'00"`;
             cardGroupCharacterInfo2.innerText += `\n Weight: ${data2.weight}lbs`;
@@ -222,14 +237,13 @@ searchButton.addEventListener('click', () => {
           })})})})
           userInput.value = ""
 
-
+          
 
           /*
           MAIN ISSUES
 
-          -characters over 900 will not display
+  
 
-          -cannot access keys with hyphens using bracket notation
 
 
 
