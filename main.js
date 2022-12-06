@@ -15,16 +15,20 @@ let characterInfo = document.querySelector('#characterInfo');
 let characterCard = document.querySelector('.card');
 let characterCard2 = document.querySelector('#card2');
 let movesArrowButton = document.querySelector('#leftArrowButton');
+let movesArrowButton2 = document.querySelector('#leftArrowButton2');
 let compareArrowButton = document.querySelector('#rightArrowButton');
 
 let mainPageImg = document.querySelector('#mainPageCards');
 let backArrowButton = document.querySelector('#backArrowButton');
 let characterCard3 = document.querySelector('.card3');
+let characterCard4 = document.querySelector('.movesCard4')
+
 
 let characterTitle3 = document.querySelector('#cardTitle3');
 let characterInfo3 = document.querySelector('#characterInfo3');
 let img3 = document.querySelector('#characterImg3');
 
+let submitInput = document.querySelector("#submit-input")
 
 
 //~~~~~~~~~~~~~~~~~~Comparison Cards~~~~~~~~~~~~~~~~~~~
@@ -62,9 +66,12 @@ cardGroup.style.display = "none"
 searchButton.addEventListener('click', () => {
   //hiding the images on page
   mainPageImg.style.display = "none"
-
   fetch(`https://pokeapi.co/api/v2/pokemon/${userInput.value}`)
     .then(function(response){
+      if(userInput.value >= 906){
+        submitInput.innerText = "Pokemon's over 905 are currently not available"
+        // alert("Pokemon's over 905 are currently not available")
+          }
           return response.json()
     })
     .then(function(data){
@@ -77,6 +84,7 @@ searchButton.addEventListener('click', () => {
       //making the card visible
       characterCard.style.opacity = "10";
       //characters data
+      // resetChar1()
       characterTitle.innerHTML = `${data.name.toUpperCase()}`;
       characterInfo.innerText += `\n Height: ${data.height}'00"`;
       characterInfo.innerText += `\n Weight: ${data.weight}lbs`;
@@ -177,7 +185,9 @@ searchButton.addEventListener('click', () => {
 
         compareArrowButton.addEventListener("click", () => {
           cardGroup.style.display = "";
-          alert("Search for another pokemon");
+          submitInput.innerText = "Search for your second pokemon";
+          
+          // alert("Search for another pokemon");
           characterCard.style.display = "none"
 
           //displaying 2nd search bar
@@ -192,6 +202,7 @@ searchButton.addEventListener('click', () => {
           //making the card visible
           
           //characters data
+          resetChara1()
           cardGroupCharacterName1.innerHTML = `${data.name.toUpperCase()}`;
           cardGroupCharacterInfo1.innerText += `\n Height: ${data.height}'00"`;
           cardGroupCharacterInfo1.innerText += `\n Weight: ${data.weight}lbs`;
@@ -205,6 +216,58 @@ searchButton.addEventListener('click', () => {
 
           img3.style.display = "none"
 
+          movesArrowButton2.addEventListener("click", () => {
+            //new image for the moves card
+            characterImg2.src = data.sprites.other["official-artwork"].front_default;
+             
+            //character moves data
+            characterInfo2.innerText = `${data.name} Moves: \n`
+            characterInfo2.innerText += `\n${data.moves[0].move.name.toUpperCase()} `
+            characterInfo2.innerText = data.moves[0].move.name.toUpperCase() + "\n"
+            characterInfo2.innerText = data.moves[0].move.name.toUpperCase() +  "\n";
+            characterInfo2.innerText += data.moves[1].move.name.toUpperCase() + "\n";
+            characterInfo2.innerText += data.moves[2].move.name.toUpperCase() + "\n";
+            characterInfo2.innerText += data.moves[3].move.name.toUpperCase() + "\n";
+            characterInfo2.innerText += data.moves[4].move.name.toUpperCase() + "\n";
+            characterInfo2.innerText += data.moves[5].move.name.toUpperCase() + "\n";
+            characterInfo2.innerText += data.moves[6].move.name.toUpperCase() + "\n";
+            characterInfo2.innerText += data.moves[7].move.name.toUpperCase() + "\n";
+            characterInfo2.innerText += data.moves[8].move.name.toUpperCase() + "\n";
+            characterInfo2.innerText += data.moves[9].move.name.toUpperCase() + "\n";
+            characterInfo2.innerText += data.moves[10].move.name.toUpperCase() + "\n";
+            characterInfo2.innerText += `\n${data.moves[11].move.name.toUpperCase()}`;
+            characterInfo2.innerText += data.moves[12].move.name.toUpperCase() + "\n";
+            characterInfo2.innerText += data.moves[13].move.name.toUpperCase() + "\n";
+            characterInfo2.innerText += data.moves[14].move.name.toUpperCase() + "\n";
+            characterInfo2.innerText += data.moves[15].move.name.toUpperCase() + "\n";
+            characterInfo2.innerText += data.moves[16].move.name.toUpperCase() + "\n";
+            characterInfo2.innerText += data.moves[17].move.name.toUpperCase() + "\n";
+            characterInfo2.innerText += data.moves[18].move.name.toUpperCase() + "\n";
+            characterInfo2.innerText += data.moves[19].move.name.toUpperCase() + "\n";
+            characterInfo2.innerText += data.moves[20].move.name.toUpperCase() + "\n";
+      
+            characterCard4
+         
+  
+  
+              //resetting first character card description
+              characterInfo.innerText = ""
+              //hiding first character card
+              characterCard.style.display = "none"
+              //resetting Moves card
+              characterCard2.style.display = ""
+              //viewing Moves card
+              characterCard2.style.opacity = "10"
+              //resetting search bar
+              userInput.value = ""
+            
+            
+              
+            
+            
+            
+            })
+          
           //2nd Search Bar Event Listener
           searchButton2.addEventListener('click', () => {
             fetch(`https://pokeapi.co/api/v2/pokemon/${userInput2.value}`)
@@ -219,6 +282,8 @@ searchButton.addEventListener('click', () => {
             
           
             //2nd Characters data
+            resetChar2()
+
             cardGroupImg2.src = data2.sprites.other["official-artwork"].front_default;
             cardGroupCharacterName2.innerHTML = `${data2.name.toUpperCase()}`;
             cardGroupCharacterInfo2.innerText += `\n Height: ${data2.height}'00"`;
@@ -231,13 +296,43 @@ searchButton.addEventListener('click', () => {
             cardGroupCharacterInfo2.innerText += `\n Special Defense: ${data2.stats[3].base_stat}`; 
             cardGroupCharacterInfo2.innerText += `\n Speed: ${data2.stats[4].base_stat}`;
           
-        })
 
             
+        })
+        
+            
           })})})})
+          
           userInput.value = ""
 
+//functions// 
+
+          function resetChara1(){
+          cardGroupCharacterName1.innerHTML = ""
+          cardGroupCharacterInfo1.innerText = ""
+          cardGroupCharacterInfo1.innerText = ""
+          cardGroupCharacterInfo1.innerText = ""
+          cardGroupCharacterInfo1.innerText = ""
+          cardGroupCharacterInfo1.innerText = ""
+          cardGroupCharacterInfo1.innerText = ""
+          cardGroupCharacterInfo1.innerText = ""
+          cardGroupCharacterInfo1.innerText = ""
+          cardGroupCharacterInfo1.innerText = ""
+          }
           
+
+          function resetChar2 (){
+            cardGroupCharacterName2.innerHTML = " "
+            cardGroupCharacterInfo2.innerText = " "
+            cardGroupCharacterInfo2.innerText = " "
+            cardGroupCharacterInfo2.innerText = " "
+            cardGroupCharacterInfo2.innerText = " "
+            cardGroupCharacterInfo2.innerText = " "
+            cardGroupCharacterInfo2.innerText = " "
+            cardGroupCharacterInfo2.innerText = " "
+            cardGroupCharacterInfo2.innerText = " "
+            cardGroupCharacterInfo2.innerText = " "
+          }
 
           /*
           MAIN ISSUES

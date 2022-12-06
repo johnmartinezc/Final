@@ -46,12 +46,43 @@ body {
   width: 100%;
   height: 30%;
 }
-.input-group mb-3{
-  width: 25%
+
+
+#userInput{
+ /* max-width: 50vh; */
+  /* max-height: 50vh;  */
+  /* background-position: center; */
+  /* background-size: contain; */
+  /* display: flex; */
+  /* align-items: center; */
+  /* justify-content: center ; */
+  color: white;
+  background: transparent; 
+  font-size: 20px;
+  left: 402px;
+  right: 2000px
+}
+#userInput2{
+  max-width: 50vh;
+  max-height: 50vh; 
+  background-position: center;
+  background-size: contain;
+  color: white;
   display: flex;
-  
+  align-items: center;
+  justify-content: center ;
+  background: transparent;
+
 }
 
+#submit-input{
+  color: white;
+  font-size: 25px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+
+}
 
 
 
