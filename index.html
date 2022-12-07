@@ -15,15 +15,15 @@
 
 <!-- <img id="pokemonLogo" src="https://archives.bulbagarden.net/media/upload/4/4b/Pok%C3%A9dex_logo.png"> -->
 
-<img id="charmander" src="https://media.tenor.com/_wx4FeCW3_kAAAAC/pokemon-logo.gif" width="250" height="250">
+<img id="pokemonLogo" src="https://media.tenor.com/_wx4FeCW3_kAAAAC/pokemon-logo.gif" width="250" height="250">
 
 <!-- <img id="charmander" src="https://media.tenor.com/y71BjlqhiKgAAAAj/evolution-fire-pokemon.gif" width="250" height="250"> -->
 </center>
     <!-- SEARCH BAR  -->
-  <div>
-    <p id="submit-input"></p>
-  </div>
-  <div class="input-group mb-3">
+    <div>
+      <p id="submit-input"></p>
+    </div>
+  <div  class="input-group mb-3">
     <input type="text" id="userInput" class="form-control" placeholder="Search for a pokemon by name or National Pokedex number " aria-label="Recipient's username" aria-describedby="button-addon2">
     <button class="btn btn-primary" type="button" id="searchButton">search</button>
   </div>
@@ -32,13 +32,14 @@
     <input type="text" id="userInput2" class="form-control" placeholder="Search for a pokemon by name or National Pokedex number " aria-label="Recipient's username" aria-describedby="button-addon2">
     <button class="btn btn-primary" type="button" id="searchButton2">search</button>
   </div>
- 
+
+
   <!-- CHARACTER CARD ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~CHARACTER CARD~~~~~~~~~~-->
-<left>
+<center>
 <div class="card" style="width: 18rem;">
   <div class="btn-group" role="group" aria-label="Basic example">
-    <button id="leftArrowButton" type="button" class="btn btn-danger">< moves</button>
-    <button id="rightArrowButton" type="button" class="btn btn-danger">compare ></button>
+    <button id="leftArrowButton" type="button" class="btn btn-outline-light">< moves</button>
+    <button id="rightArrowButton" type="button" class="btn btn-outline-light">compare ></button>
   </div>
 
   <img id="characterImg" class="card-img-top" alt="...">
@@ -52,17 +53,14 @@
  <center>
  <div id="cardGroup" class="card-group">
   <div class="card">
-    
     <img id="cardGroupImg" class="card-img-top">
-  
     <div class="card-body">
       <h5 id="cardGroupName1" class="card-title"></h5>
       <p id="cardGroupInfo1" class="characterInfo"></p>
     </div>
   
   </div>
-  
-
+<!-- VERSUS IMG -->
   <div id="vsdiv" class="card" type="image">
     <blockquote id="versusImg" class="blockquote mb-0 card-body" >
     <img id="versusImg" src="https://content.invisioncic.com/Mnhlcanucks/monthly_2019_12/versus.gif.1c3aba983be747506c34a3922e601f5c.gif" >
@@ -77,6 +75,8 @@
     </div>
   </div>
 </div>
+<button id="versusMovesButton" type="button" class="btn btn-outline-light">Character Moves</button>
+<button id="versusBackButton" type="button" class="btn btn-outline-light">Back</button>
 </center>
 
 </left>
@@ -89,7 +89,7 @@
     <div class="col-md-8">
       <div class="card-body">
         <h5 class="card-title"></h5>
-        <button id="backArrowButton" type="button" class="btn btn-danger"> Back > </button>
+        <button id="backArrowButton" type="button" class="btn btn-outline-light"> Back > </button>
         <p class="card-text">Moves:</p>
         <p id="characterInfo2" class="card-text"><small class="text-muted"></small></p>
       </div>
@@ -112,12 +112,8 @@
    <!-- CHARACTER CARD-3 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~CHARACTER CARD-3 ~~~~~~~~~~-->
    <div class="card3" style="width: 50rem;">
     <div class="btn-group" role="group" aria-label="Basic example">
-      <button id="leftArrowButton2" type="button" class="btn btn-danger">< moves</button>
+      <button id="leftArrowButton" type="button" class="btn btn-outline-light">< moves</button>
     </div>
-    <div class="movesCard4" style="width: 50rem;">
-      <div class="btn-group" role="group" aria-label="Basic example">
-        <button id="leftArrowButton2" type="button" class="btn btn-danger">< moves</button>
-      </div>
   
     <img id="characterImg3" class="card-img-top" alt="...">
     <div class="card-body">
