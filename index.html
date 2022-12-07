@@ -23,16 +23,16 @@
     <div>
       <p id="submit-input"></p>
     </div>
-  <div  class="input-group mb-3">
-    <input type="text" id="userInput" class="form-control" placeholder="Search for a pokemon by name or National Pokedex number " aria-label="Recipient's username" aria-describedby="button-addon2">
+  <div id="searchbar" class="input-group mb-3">
+    <input type="text" id="userInput" class="form-control" placeholder="Search for a pokemon by name or National Pokedex number " aria-label="Recipient's username" aria-describedby="button-addon2" autocomplete="off">
     <button class="btn btn-primary" type="button" id="searchButton">search</button>
   </div>
 
-  <div class="input-group mb-3">
-    <input type="text" id="userInput2" class="form-control" placeholder="Search for a pokemon by name or National Pokedex number " aria-label="Recipient's username" aria-describedby="button-addon2">
+  <div id="searchbar2" class="input-group mb-3">
+    <input type="text" id="userInput2" class="form-control" placeholder="Search for another pokemon by name or National Pokedex number " aria-label="Recipient's username" aria-describedby="button-addon2" autocomplete="off">
     <button class="btn btn-primary" type="button" id="searchButton2">search</button>
   </div>
-
+ 
 
   <!-- CHARACTER CARD ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~CHARACTER CARD~~~~~~~~~~-->
 <center>
@@ -57,8 +57,11 @@
     <div class="card-body">
       <h5 id="cardGroupName1" class="card-title"></h5>
       <p id="cardGroupInfo1" class="characterInfo"></p>
+      
     </div>
-  
+    <center>
+    
+    </center>
   </div>
 <!-- VERSUS IMG -->
   <div id="vsdiv" class="card" type="image">
@@ -75,8 +78,10 @@
     </div>
   </div>
 </div>
-<button id="versusMovesButton" type="button" class="btn btn-outline-light">Character Moves</button>
-<button id="versusBackButton" type="button" class="btn btn-outline-light">Back</button>
+<center>
+  <button id="homeBackButton" type="button" class="btn btn-outline-light">Back</button>
+  <button id="versusMovesButton" type="button" class="btn btn-outline-light">Character Moves</button>
+  <button id="versusBackButton" type="button" class="btn btn-outline-light">Back</button>
 </center>
 
 </left>

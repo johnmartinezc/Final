@@ -50,15 +50,30 @@ body {
   display: flex;
   justify-content: center;
 }
-#userInput, #userInput2 {
+#searchbar, #searchbar2  {
+  text-align: center;
+  display: flex;
+  align-items:  center;
+  justify-content: center;
+  background: transparent;
+  
+
+}
+#userinput, #userinput2{
+  width: 100%;
+  max-width: 700px;
   background: transparent;
   color: white;
-  display: flex;
-  justify-content: center;
   border: 25px;
   text-align: center;
+  display: flex;
+  align-items:  center;
+  justify-content: center;
   
+
 }
+
+
 #searchButton, #searchButton2 {
   background: transparent;
   color: yellow;

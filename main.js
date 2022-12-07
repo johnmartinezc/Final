@@ -1,7 +1,7 @@
 //*<------------- gloabal variables ------------->*//
 //*<----------------------------------------->*//
-
-
+let characterOne = ''
+let characterTwo = ''
 //*<------------- querySelectors ------------->*//
 //*<----------------------------------------->*//
 let userInput = document.querySelector('#userInput');
@@ -25,8 +25,8 @@ let characterTitle3 = document.querySelector('#cardTitle3');
 let characterInfo3 = document.querySelector('#characterInfo3');
 let img3 = document.querySelector('#characterImg3');
 
-
 let submitInput = document.querySelector("#submit-input")
+
 
 //~~~~~~~~~~~~~~~~~~Comparison Cards~~~~~~~~~~~~~~~~~~~
 let cardGroup = document.querySelector('#cardGroup');
@@ -41,6 +41,7 @@ let cardGroupCharacterName2 = document.querySelector('#cardGroupName2');
 let versus = document.querySelector('#vsdiv');
 let versusMovesButton = document.querySelector('#versusMovesButton');
 let versusBackButton = document.querySelector('#versusBackButton');
+let homeBackButton = document.querySelector('#homeBackButton');
 
 
 //~~~~~~~~~~~~~~~~~~Moves card~~~~~~~~~~~~~~~~~~~
@@ -62,12 +63,16 @@ searchButton2.style.display = "none";
 cardGroup.style.display = "none";
 versusMovesButton.style.display = "none";
 versusBackButton.style.display = "none";
-
+homeBackButton.style.display = "none" ;
 
 
 searchButton.addEventListener('click', () => {
+ 
   //hiding the images on page
-  mainPageImg.style.display = "none"
+  mainPageImg.style.display = "none";
+  //hiding search bar and button
+  // userInput.style.display = "none";
+  // searchButton.style.display = "none";
 
   fetch(`https://pokeapi.co/api/v2/pokemon/${userInput.value}`)
     .then(function(response){
@@ -77,26 +82,31 @@ searchButton.addEventListener('click', () => {
           return response.json()
     })
     .then(function(data){
-      submitInput.innerText = ''
       console.log(data);
+
+      characterOne = data
+      
+    
       //Resetting character info to search another character
       characterInfo.innerText = "";
+      characterTitle.innerHTML = ''
       //setting card img to user's selected character
-      img.src = data.sprites.other["official-artwork"].front_default;
+      img.src = characterOne.sprites.other["official-artwork"].front_default;
       let character1Img = img.src;
       //making the card visible
       characterCard.style.opacity = "10";
-      //characters data
-      characterTitle.innerHTML = `${data.name.toUpperCase()}`;
-      characterInfo.innerText += `\n Height: ${data.height}'00"`;
-      characterInfo.innerText += `\n Weight: ${data.weight}lbs`;
-      characterInfo.innerText += `\n Type: ${data.types[0].type.name.toUpperCase()}`;
-      characterInfo.innerText += `\n Abilities: ${data.abilities[0].ability.name}`;
-      characterInfo.innerText += `\n Attack: ${data.stats[0].base_stat}` ;
-      characterInfo.innerText += `\n Defense: ${data.stats[1].base_stat}`;
-      characterInfo.innerText += `\n Special Attack: ${data.stats[2].base_stat}`;
-      characterInfo.innerText += `\n Special Defense: ${data.stats[3].base_stat}`; 
-      characterInfo.innerText += `\n Speed: ${data.stats[4].base_stat}`;
+      //characters characterOne
+      
+      characterTitle.innerHTML = `${characterOne.name.toUpperCase()}`;
+      characterInfo.innerText += `\n Height: ${characterOne.height}'00"`;
+      characterInfo.innerText += `\n Weight: ${characterOne.weight}lbs`;
+      characterInfo.innerText += `\n Type: ${characterOne.types[0].type.name.toUpperCase()}`;
+      characterInfo.innerText += `\n Abilities: ${characterOne.abilities[0].ability.name}`;
+      characterInfo.innerText += `\n Attack: ${characterOne.stats[0].base_stat}` ;
+      characterInfo.innerText += `\n Defense: ${characterOne.stats[1].base_stat}`;
+      characterInfo.innerText += `\n Special Attack: ${characterOne.stats[2].base_stat}`;
+      characterInfo.innerText += `\n Special Defense: ${characterOne.stats[3].base_stat}`; 
+      characterInfo.innerText += `\n Speed: ${characterOne.stats[4].base_stat}`;
       
       //resetting the character card
       characterCard.style.display = "";
@@ -108,33 +118,34 @@ searchButton.addEventListener('click', () => {
       //Moves arrow event listener
       movesArrowButton.addEventListener("click", () => {
       //new image for the moves card
-      characterImg2.src = data.sprites.other["official-artwork"].front_default;
+      characterImg2.src = characterOne.sprites.other["official-artwork"].front_default;
        
-      //character moves data
-      characterInfo2.innerText = `${data.name} Moves: \n`;
-      characterInfo2.innerText += `\n${data.moves[0].move.name.toUpperCase()} `;
-      characterInfo2.innerText = data.moves[0].move.name.toUpperCase() + "\n";
-      characterInfo2.innerText = data.moves[0].move.name.toUpperCase() +  "\n";
-      characterInfo2.innerText += data.moves[1].move.name.toUpperCase() + "\n";
-      characterInfo2.innerText += data.moves[2].move.name.toUpperCase() + "\n";
-      characterInfo2.innerText += data.moves[3].move.name.toUpperCase() + "\n";
-      characterInfo2.innerText += data.moves[4].move.name.toUpperCase() + "\n";
-      characterInfo2.innerText += data.moves[5].move.name.toUpperCase() + "\n";
-      characterInfo2.innerText += data.moves[6].move.name.toUpperCase() + "\n";
-      characterInfo2.innerText += data.moves[7].move.name.toUpperCase() + "\n";
-      characterInfo2.innerText += data.moves[8].move.name.toUpperCase() + "\n";
-      characterInfo2.innerText += data.moves[9].move.name.toUpperCase() + "\n";
-      characterInfo2.innerText += data.moves[10].move.name.toUpperCase() + "\n";
-      characterInfo2.innerText += `\n${data.moves[11].move.name.toUpperCase()}`;
-      characterInfo2.innerText += data.moves[12].move.name.toUpperCase() + "\n";
-      characterInfo2.innerText += data.moves[13].move.name.toUpperCase() + "\n";
-      characterInfo2.innerText += data.moves[14].move.name.toUpperCase() + "\n";
-      characterInfo2.innerText += data.moves[15].move.name.toUpperCase() + "\n";
-      characterInfo2.innerText += data.moves[16].move.name.toUpperCase() + "\n";
-      characterInfo2.innerText += data.moves[17].move.name.toUpperCase() + "\n";
-      characterInfo2.innerText += data.moves[18].move.name.toUpperCase() + "\n";
-      characterInfo2.innerText += data.moves[19].move.name.toUpperCase() + "\n";
-      characterInfo2.innerText += data.moves[20].move.name.toUpperCase() + "\n";
+      //character moves characterOne
+      
+      characterInfo2.innerText = `${characterOne.name} Moves: \n`;
+      characterInfo2.innerText += `\n${characterOne.moves[0].move.name.toUpperCase()} `;
+      characterInfo2.innerText = characterOne.moves[0].move.name.toUpperCase() + "\n";
+      characterInfo2.innerText = characterOne.moves[0].move.name.toUpperCase() +  "\n";
+      characterInfo2.innerText += characterOne.moves[1].move.name.toUpperCase() + "\n";
+      characterInfo2.innerText += characterOne.moves[2].move.name.toUpperCase() + "\n";
+      characterInfo2.innerText += characterOne.moves[3].move.name.toUpperCase() + "\n";
+      characterInfo2.innerText += characterOne.moves[4].move.name.toUpperCase() + "\n";
+      characterInfo2.innerText += characterOne.moves[5].move.name.toUpperCase() + "\n";
+      characterInfo2.innerText += characterOne.moves[6].move.name.toUpperCase() + "\n";
+      characterInfo2.innerText += characterOne.moves[7].move.name.toUpperCase() + "\n";
+      characterInfo2.innerText += characterOne.moves[8].move.name.toUpperCase() + "\n";
+      characterInfo2.innerText += characterOne.moves[9].move.name.toUpperCase() + "\n";
+      characterInfo2.innerText += characterOne.moves[10].move.name.toUpperCase() + "\n";
+      characterInfo2.innerText += `\n${characterOne.moves[11].move.name.toUpperCase()}`;
+      characterInfo2.innerText += characterOne.moves[12].move.name.toUpperCase() + "\n";
+      characterInfo2.innerText += characterOne.moves[13].move.name.toUpperCase() + "\n";
+      characterInfo2.innerText += characterOne.moves[14].move.name.toUpperCase() + "\n";
+      characterInfo2.innerText += characterOne.moves[15].move.name.toUpperCase() + "\n";
+      characterInfo2.innerText += characterOne.moves[16].move.name.toUpperCase() + "\n";
+      characterInfo2.innerText += characterOne.moves[17].move.name.toUpperCase() + "\n";
+      characterInfo2.innerText += characterOne.moves[18].move.name.toUpperCase() + "\n";
+      characterInfo2.innerText += characterOne.moves[19].move.name.toUpperCase() + "\n";
+      characterInfo2.innerText += characterOne.moves[20].move.name.toUpperCase() + "\n";
 
         //resetting first character card description
         characterInfo.innerText = "";
@@ -149,17 +160,18 @@ searchButton.addEventListener('click', () => {
       })
      
         backArrowButton.addEventListener("click", () => {
-          
-          characterTitle.innerHTML = `${data.name.toUpperCase()}`;
-          characterInfo.innerText += `\n Height: ${data.height}'00"`;
-          characterInfo.innerText += `\n Weight: ${data.weight}lbs`;
-          characterInfo.innerText += `\n Type: ${data.types[0].type.name.toUpperCase()}`;
-          characterInfo.innerText += `\n Abilities: ${data.abilities[0].ability.name}`;
-          characterInfo.innerText += `\n Attack: ${data.stats[0].base_stat}` ;
-          characterInfo.innerText += `\n Defense: ${data.stats[1].base_stat}`;
-          characterInfo.innerText += `\n Special Attack: ${data.stats[2].base_stat}`;
-          characterInfo.innerText += `\n Special Defense: ${data.stats[3].base_stat}`; 
-          characterInfo.innerText += `\n Speed: ${data.stats[4].base_stat}`;
+          characterTitle.innerHTML = ""
+          characterInfo.innerText = ""
+          characterTitle.innerHTML = `${characterOne.name.toUpperCase()}`;
+          characterInfo.innerText += `\n Height: ${characterOne.height}'00"`;
+          characterInfo.innerText += `\n Weight: ${characterOne.weight}lbs`;
+          characterInfo.innerText += `\n Type: ${characterOne.types[0].type.name.toUpperCase()}`;
+          characterInfo.innerText += `\n Abilities: ${characterOne.abilities[0].ability.name}`;
+          characterInfo.innerText += `\n Attack: ${characterOne.stats[0].base_stat}` ;
+          characterInfo.innerText += `\n Defense: ${characterOne.stats[1].base_stat}`;
+          characterInfo.innerText += `\n Special Attack: ${characterOne.stats[2].base_stat}`;
+          characterInfo.innerText += `\n Special Defense: ${characterOne.stats[3].base_stat}`; 
+          characterInfo.innerText += `\n Speed: ${characterOne.stats[4].base_stat}`;
 
           characterCard.style.display = "";
           
@@ -171,6 +183,7 @@ searchButton.addEventListener('click', () => {
       compareArrowButton.addEventListener("click", () => {
           cardGroup.style.display = "";
           submitInput.innerText = "Search for your second pokemon";
+          
           characterCard.style.display = "none";
 
           //displaying 2nd search bar
@@ -179,30 +192,43 @@ searchButton.addEventListener('click', () => {
           //hiding 1st search bar
           userInput.style.display = "none";
           searchButton.style.display = "none";
-           
 
           //setting card img to user's selected character
-          // cardGroupImg.src = data.sprites.versions["generation-v"]["black-white"].animated.front_default
-          cardGroupImg.src = data.sprites.other["official-artwork"].front_default;
+          // cardGroupImg.src = characterOne.sprites.versions["generation-v"]["black-white"].animated.front_default
+          cardGroupImg.src = characterOne.sprites.other["official-artwork"].front_default;
           //making the card visible
           
-          //characters data
+          //characters characterOne
           resetChara1()
-          cardGroupCharacterName1.innerHTML = `${data.name.toUpperCase()}`;
-          cardGroupCharacterInfo1.innerText += `\n Height: ${data.height}'00"`;
-          cardGroupCharacterInfo1.innerText += `\n Weight: ${data.weight}lbs`;
-          cardGroupCharacterInfo1.innerText += `\n Type: ${data.types[0].type.name.toUpperCase()}`;
-          cardGroupCharacterInfo1.innerText += `\n Abilities: ${data.abilities[0].ability.name}`;
-          cardGroupCharacterInfo1.innerText += `\n Attack: ${data.stats[0].base_stat}` ;
-          cardGroupCharacterInfo1.innerText += `\n Defense: ${data.stats[1].base_stat}`;
-          cardGroupCharacterInfo1.innerText += `\n Special Attack: ${data.stats[2].base_stat}`;
-          cardGroupCharacterInfo1.innerText += `\n Special Defense: ${data.stats[3].base_stat}`; 
-          cardGroupCharacterInfo1.innerText += `\n Speed: ${data.stats[4].base_stat}`;
+          cardGroupCharacterName1.innerHTML = `${characterOne.name.toUpperCase()}`;
+          cardGroupCharacterInfo1.innerText += `\n Height: ${characterOne.height}'00"`;
+          cardGroupCharacterInfo1.innerText += `\n Weight: ${characterOne.weight}lbs`;
+          cardGroupCharacterInfo1.innerText += `\n Type: ${characterOne.types[0].type.name.toUpperCase()}`;
+          cardGroupCharacterInfo1.innerText += `\n Abilities: ${characterOne.abilities[0].ability.name}`;
+          cardGroupCharacterInfo1.innerText += `\n Attack: ${characterOne.stats[0].base_stat}` ;
+          cardGroupCharacterInfo1.innerText += `\n Defense: ${characterOne.stats[1].base_stat}`;
+          cardGroupCharacterInfo1.innerText += `\n Special Attack: ${characterOne.stats[2].base_stat}`;
+          cardGroupCharacterInfo1.innerText += `\n Special Defense: ${characterOne.stats[3].base_stat}`; 
+          cardGroupCharacterInfo1.innerText += `\n Speed: ${characterOne.stats[4].base_stat}`;
 
           img3.style.display = "none";
+          homeBackButton.style.display = ""
+          versusMovesButton.style.display = "";
 
+          homeBackButton.addEventListener("click", () => {
+            cardGroup.style.display = "none";
+            userInput2.style.display = "none";
+            searchButton2.style.display = "none";
+            userInput.style.display = "";
+            searchButton.style.display = "";
+            homeBackButton.style.display = "none";
+            versusMovesButton.style.display = "none";
+  
+            })
+            
           //2nd Search Bar Event Listener
        searchButton2.addEventListener('click', () => {
+
             fetch(`https://pokeapi.co/api/v2/pokemon/${userInput2.value}`)
             .then(function(response2){
               if(userInput.value >= 906){
@@ -212,132 +238,160 @@ searchButton.addEventListener('click', () => {
             })
             .then(function(data2){
               console.log(data2);
+              characterTwo = data2
+
               submitInput.innerText = ''
 
             characterCard.style.display = "none";
             //characterCard3.style.display = ""
             
-            //resetting search bar
-            userInput2.value = "";
+             //resetting search bar
+             userInput2.value = "";
           
-            //2nd Characters data
+            //2nd Characters characterOne
             
-            cardGroupImg2.src = data2.sprites.other["official-artwork"].front_default;
+            cardGroupImg2.src = characterTwo.sprites.other["official-artwork"].front_default;
             resetChar2()
-            cardGroupCharacterName2.innerHTML = `${data2.name.toUpperCase()}`;
-            cardGroupCharacterInfo2.innerText += `\n Height: ${data2.height}'00"`;
-            cardGroupCharacterInfo2.innerText += `\n Weight: ${data2.weight}lbs`;
-            cardGroupCharacterInfo2.innerText += `\n Type: ${data2.types[0].type.name.toUpperCase()}`;
-            cardGroupCharacterInfo2.innerText += `\n Abilities: ${data2.abilities[0].ability.name}`;
-            cardGroupCharacterInfo2.innerText += `\n Attack: ${data2.stats[0].base_stat}` ;
-            cardGroupCharacterInfo2.innerText += `\n Defense: ${data2.stats[1].base_stat}`;
-            cardGroupCharacterInfo2.innerText += `\n Special Attack: ${data2.stats[2].base_stat}`;
-            cardGroupCharacterInfo2.innerText += `\n Special Defense: ${data2.stats[3].base_stat}`; 
-            cardGroupCharacterInfo2.innerText += `\n Speed: ${data2.stats[4].base_stat}`;
+            cardGroupCharacterName2.innerHTML = `${characterTwo.name.toUpperCase()}`;
+            cardGroupCharacterInfo2.innerText += `\n Height: ${characterTwo.height}'00"`;
+            cardGroupCharacterInfo2.innerText += `\n Weight: ${characterTwo.weight}lbs`;
+            cardGroupCharacterInfo2.innerText += `\n Type: ${characterTwo.types[0].type.name.toUpperCase()}`;
+            cardGroupCharacterInfo2.innerText += `\n Abilities: ${characterTwo.abilities[0].ability.name}`;
+            cardGroupCharacterInfo2.innerText += `\n Attack: ${characterTwo.stats[0].base_stat}` ;
+            cardGroupCharacterInfo2.innerText += `\n Defense: ${characterTwo.stats[1].base_stat}`;
+            cardGroupCharacterInfo2.innerText += `\n Special Attack: ${characterTwo.stats[2].base_stat}`;
+            cardGroupCharacterInfo2.innerText += `\n Special Defense: ${characterTwo.stats[3].base_stat}`; 
+            cardGroupCharacterInfo2.innerText += `\n Speed: ${characterTwo.stats[4].base_stat}`;
 
             versusMovesButton.style.display = "";
-            
-          versusMovesButton.addEventListener("click", () => {
+            homeBackButton.style.display = ""
+            userInput2.value = "";
+
+        homeBackButton.addEventListener("click", () => {
+          cardGroup.style.display = "none";
+          userInput2.style.display = "none";
+          searchButton2.style.display = "none";
+          userInput.style.display = "";
+          searchButton.style.display = "";
+          homeBackButton.style.display = "none";
+          versusMovesButton.style.display = "none";
+
+          })
+            //Character moves
+        versusMovesButton.addEventListener("click", () => {
               //resetting the character description info for character moves info 
               cardGroupCharacterInfo1.innerText = "";
+              homeBackButton.style.display = "none";
+              versusMovesButton.style.display = "none";
 
-              versusMovesButton.style.display = "none"
+              
 
-              cardGroupImg.src = data.sprites.front_shiny;
-              cardGroupImg2.src = data2.sprites.front_shiny;
-              resetChara1()
-              cardGroupCharacterInfo1.innerText = `${data.name} Moves: \n`;
-              cardGroupCharacterInfo1.innerText += `\n${data.moves[0].move.name.toUpperCase()} `;
-              cardGroupCharacterInfo1.innerText = data.moves[0].move.name.toUpperCase() + "\n";
-              cardGroupCharacterInfo1.innerText = data.moves[0].move.name.toUpperCase() +  "\n";
-              cardGroupCharacterInfo1.innerText += data.moves[1].move.name.toUpperCase() + "\n";
-              cardGroupCharacterInfo1.innerText += data.moves[2].move.name.toUpperCase() + "\n";
-              cardGroupCharacterInfo1.innerText += data.moves[3].move.name.toUpperCase() + "\n";
-              cardGroupCharacterInfo1.innerText += data.moves[4].move.name.toUpperCase() + "\n";
-              cardGroupCharacterInfo1.innerText += data.moves[5].move.name.toUpperCase() + "\n";
-              cardGroupCharacterInfo1.innerText += data.moves[6].move.name.toUpperCase() + "\n";
-              cardGroupCharacterInfo1.innerText += data.moves[7].move.name.toUpperCase() + "\n";
-              cardGroupCharacterInfo1.innerText += data.moves[8].move.name.toUpperCase() + "\n";
-              cardGroupCharacterInfo1.innerText += data.moves[9].move.name.toUpperCase() + "\n";
-              cardGroupCharacterInfo1.innerText += data.moves[10].move.name.toUpperCase() + "\n";
-              cardGroupCharacterInfo1.innerText += `\n${data.moves[11].move.name.toUpperCase()}`;
-              cardGroupCharacterInfo1.innerText += data.moves[12].move.name.toUpperCase() + "\n";
-              cardGroupCharacterInfo1.innerText += data.moves[13].move.name.toUpperCase() + "\n";
-              cardGroupCharacterInfo1.innerText += data.moves[14].move.name.toUpperCase() + "\n";
-              cardGroupCharacterInfo1.innerText += data.moves[15].move.name.toUpperCase() + "\n";
-              cardGroupCharacterInfo1.innerText += data.moves[16].move.name.toUpperCase() + "\n";
-              cardGroupCharacterInfo1.innerText += data.moves[17].move.name.toUpperCase() + "\n";
-              cardGroupCharacterInfo1.innerText += data.moves[18].move.name.toUpperCase() + "\n";
-              cardGroupCharacterInfo1.innerText += data.moves[19].move.name.toUpperCase() + "\n";
-              cardGroupCharacterInfo1.innerText += data.moves[20].move.name.toUpperCase() + "\n";
-              //CHARACTER 2 DATA
+
+              cardGroupImg.src = characterOne.sprites.front_shiny;
+              cardGroupImg2.src = characterTwo.sprites.front_shiny;
+              // resetChara1()
+              
+              cardGroupCharacterInfo1.innerText = `${characterOne.name} Moves: \n`;
+              cardGroupCharacterInfo1.innerText += `\n${characterOne.moves[0].move.name.toUpperCase()} `;
+              // cardGroupCharacterInfo1.innerText = characterOne.moves[0].move.name.toUpperCase() +  "\n";
+              cardGroupCharacterInfo1.innerText = characterOne.moves[0].move.name.toUpperCase() +  "\n";
+              cardGroupCharacterInfo1.innerText += characterOne.moves[1].move.name.toUpperCase() + "\n";
+              cardGroupCharacterInfo1.innerText += characterOne.moves[2].move.name.toUpperCase() + "\n";
+              cardGroupCharacterInfo1.innerText += characterOne.moves[3].move.name.toUpperCase() + "\n";
+              cardGroupCharacterInfo1.innerText += characterOne.moves[4].move.name.toUpperCase() + "\n";
+              cardGroupCharacterInfo1.innerText += characterOne.moves[5].move.name.toUpperCase() + "\n";
+              cardGroupCharacterInfo1.innerText += characterOne.moves[6].move.name.toUpperCase() + "\n";
+              cardGroupCharacterInfo1.innerText += characterOne.moves[7].move.name.toUpperCase() + "\n";
+              cardGroupCharacterInfo1.innerText += characterOne.moves[8].move.name.toUpperCase() + "\n";
+              cardGroupCharacterInfo1.innerText += characterOne.moves[9].move.name.toUpperCase() + "\n";
+              cardGroupCharacterInfo1.innerText += characterOne.moves[10].move.name.toUpperCase() + "\n";
+              cardGroupCharacterInfo1.innerText += `\n${characterOne.moves[11].move.name.toUpperCase()}`;
+              cardGroupCharacterInfo1.innerText += characterOne.moves[12].move.name.toUpperCase() + "\n";
+              cardGroupCharacterInfo1.innerText += characterOne.moves[13].move.name.toUpperCase() + "\n";
+              cardGroupCharacterInfo1.innerText += characterOne.moves[14].move.name.toUpperCase() + "\n";
+              cardGroupCharacterInfo1.innerText += characterOne.moves[15].move.name.toUpperCase() + "\n";
+              cardGroupCharacterInfo1.innerText += characterOne.moves[16].move.name.toUpperCase() + "\n";
+              cardGroupCharacterInfo1.innerText += characterOne.moves[17].move.name.toUpperCase() + "\n";
+              cardGroupCharacterInfo1.innerText += characterOne.moves[18].move.name.toUpperCase() + "\n";
+              cardGroupCharacterInfo1.innerText += characterOne.moves[19].move.name.toUpperCase() + "\n";
+              cardGroupCharacterInfo1.innerText += characterOne.moves[20].move.name.toUpperCase() + "\n";
+
+              //CHARACTER 2 characterOne
               resetChar2()
-              cardGroupCharacterInfo2.innerText = `${data2.name} Moves: \n`;
-              cardGroupCharacterInfo2.innerText += `\n${data2.moves[0].move.name.toUpperCase()} `;
-              cardGroupCharacterInfo2.innerText = data2.moves[0].move.name.toUpperCase() + "\n";
-              cardGroupCharacterInfo2.innerText = data2.moves[0].move.name.toUpperCase() +  "\n";
-              cardGroupCharacterInfo2.innerText += data2.moves[1].move.name.toUpperCase() + "\n";
-              cardGroupCharacterInfo2.innerText += data2.moves[2].move.name.toUpperCase() + "\n";
-              cardGroupCharacterInfo2.innerText += data2.moves[3].move.name.toUpperCase() + "\n";
-              cardGroupCharacterInfo2.innerText += data2.moves[4].move.name.toUpperCase() + "\n";
-              cardGroupCharacterInfo2.innerText += data2.moves[5].move.name.toUpperCase() + "\n";
-              cardGroupCharacterInfo2.innerText += data2.moves[6].move.name.toUpperCase() + "\n";
-              cardGroupCharacterInfo2.innerText += data2.moves[7].move.name.toUpperCase() + "\n";
-              cardGroupCharacterInfo2.innerText += data2.moves[8].move.name.toUpperCase() + "\n";
-              cardGroupCharacterInfo2.innerText += data2.moves[9].move.name.toUpperCase() + "\n";
-              cardGroupCharacterInfo2.innerText += data2.moves[10].move.name.toUpperCase() + "\n";
-              cardGroupCharacterInfo2.innerText += `\n${data2.moves[11].move.name.toUpperCase()}`;
-              cardGroupCharacterInfo2.innerText += data2.moves[12].move.name.toUpperCase() + "\n";
-              cardGroupCharacterInfo2.innerText += data2.moves[13].move.name.toUpperCase() + "\n";
-              cardGroupCharacterInfo2.innerText += data2.moves[14].move.name.toUpperCase() + "\n";
-              cardGroupCharacterInfo2.innerText += data2.moves[15].move.name.toUpperCase() + "\n";
-              cardGroupCharacterInfo2.innerText += data2.moves[16].move.name.toUpperCase() + "\n";
-              cardGroupCharacterInfo2.innerText += data2.moves[17].move.name.toUpperCase() + "\n";
-              cardGroupCharacterInfo2.innerText += data2.moves[18].move.name.toUpperCase() + "\n";
-              cardGroupCharacterInfo2.innerText += data2.moves[19].move.name.toUpperCase() + "\n";
-              cardGroupCharacterInfo2.innerText += data2.moves[20].move.name.toUpperCase() + "\n";
+              
+              cardGroupCharacterInfo2.innerText = ''
+              cardGroupCharacterInfo2.innerText = `${characterTwo.name} Moves: \n`;
+              cardGroupCharacterInfo2.innerText += `\n${characterTwo.moves[0].move.name.toUpperCase()} `;
+              cardGroupCharacterInfo2.innerText = characterTwo.moves[0].move.name.toUpperCase() + "\n";
+              cardGroupCharacterInfo2.innerText = characterTwo.moves[0].move.name.toUpperCase() +  "\n";
+              cardGroupCharacterInfo2.innerText += characterTwo.moves[1].move.name.toUpperCase() + "\n";
+              cardGroupCharacterInfo2.innerText += characterTwo.moves[2].move.name.toUpperCase() + "\n";
+              cardGroupCharacterInfo2.innerText += characterTwo.moves[3].move.name.toUpperCase() + "\n";
+              cardGroupCharacterInfo2.innerText += characterTwo.moves[4].move.name.toUpperCase() + "\n";
+              cardGroupCharacterInfo2.innerText += characterTwo.moves[5].move.name.toUpperCase() + "\n";
+              cardGroupCharacterInfo2.innerText += characterTwo.moves[6].move.name.toUpperCase() + "\n";
+              cardGroupCharacterInfo2.innerText += characterTwo.moves[7].move.name.toUpperCase() + "\n";
+              cardGroupCharacterInfo2.innerText += characterTwo.moves[8].move.name.toUpperCase() + "\n";
+              cardGroupCharacterInfo2.innerText += characterTwo.moves[9].move.name.toUpperCase() + "\n";
+              cardGroupCharacterInfo2.innerText += characterTwo.moves[10].move.name.toUpperCase() + "\n";
+              cardGroupCharacterInfo2.innerText += `\n${characterTwo.moves[11].move.name.toUpperCase()}`;
+              cardGroupCharacterInfo2.innerText += characterTwo.moves[12].move.name.toUpperCase() + "\n";
+              cardGroupCharacterInfo2.innerText += characterTwo.moves[13].move.name.toUpperCase() + "\n";
+              cardGroupCharacterInfo2.innerText += characterTwo.moves[14].move.name.toUpperCase() + "\n";
+              cardGroupCharacterInfo2.innerText += characterTwo.moves[15].move.name.toUpperCase() + "\n";
+              cardGroupCharacterInfo2.innerText += characterTwo.moves[16].move.name.toUpperCase() + "\n";
+              cardGroupCharacterInfo2.innerText += characterTwo.moves[17].move.name.toUpperCase() + "\n";
+              cardGroupCharacterInfo2.innerText += characterTwo.moves[18].move.name.toUpperCase() + "\n";
+              cardGroupCharacterInfo2.innerText += characterTwo.moves[19].move.name.toUpperCase() + "\n";
+              cardGroupCharacterInfo2.innerText += characterTwo.moves[20].move.name.toUpperCase() + "\n";
 
 
+              userInput2.style.display = 'none'
+              searchButton2.style.display = 'none'
 
               
               characterInfo.innerText = "";
-
               versusBackButton.style.display = "";
 
           versusBackButton.addEventListener("click", () => {
-                versusMovesButton.style.display = ""
-                versusBackButton.style.display = "none"
-                cardGroupCharacterInfo1.innerText = ""
-                cardGroupCharacterInfo2.innerText = ""
+                versusMovesButton.style.display = "";
+                versusBackButton.style.display = "none";
+                cardGroupCharacterInfo1.innerText = "";
+                cardGroupCharacterInfo2.innerText = "";
+                homeBackButton.style.display = "";
                 
+                // userInput2.style.display = ''
+                // searchButton2.style.display = ''
                 
-                // cardGroupImg2.src = data2.sprites.other["official-artwork"].front_default;
-                cardGroupImg2.src = data2.sprites.other["official-artwork"].front_default;
+                // cardGroupImg2.src = characterTwo.sprites.other["official-artwork"].front_default;
+                cardGroupImg2.src = characterTwo.sprites.other["official-artwork"].front_default;
+                cardGroupImg.src = characterOne.sprites.other["official-artwork"].front_default;
 
-                cardGroupCharacterName2.innerHTML = `${data2.name.toUpperCase()}`;
-                cardGroupCharacterInfo2.innerText += `\n Height: ${data2.height}'00"`;
-                cardGroupCharacterInfo2.innerText += `\n Weight: ${data2.weight}lbs`;
-                cardGroupCharacterInfo2.innerText += `\n Type: ${data2.types[0].type.name.toUpperCase()}`;
-                cardGroupCharacterInfo2.innerText += `\n Abilities: ${data2.abilities[0].ability.name}`;
-                cardGroupCharacterInfo2.innerText += `\n Attack: ${data2.stats[0].base_stat}` ;
-                cardGroupCharacterInfo2.innerText += `\n Defense: ${data2.stats[1].base_stat}`;
-                cardGroupCharacterInfo2.innerText += `\n Special Attack: ${data2.stats[2].base_stat}`;
-                cardGroupCharacterInfo2.innerText += `\n Special Defense: ${data2.stats[3].base_stat}`; 
-                cardGroupCharacterInfo2.innerText += `\n Speed: ${data2.stats[4].base_stat}`;
+                cardGroupCharacterName2.innerHTML = `${characterTwo.name.toUpperCase()}`;
+                cardGroupCharacterInfo2.innerText += `\n Height: ${characterTwo.height}'00"`;
+                cardGroupCharacterInfo2.innerText += `\n Weight: ${characterTwo.weight}lbs`;
+                cardGroupCharacterInfo2.innerText += `\n Type: ${characterTwo.types[0].type.name.toUpperCase()}`;
+                cardGroupCharacterInfo2.innerText += `\n Abilities: ${characterTwo.abilities[0].ability.name}`;
+                cardGroupCharacterInfo2.innerText += `\n Attack: ${characterTwo.stats[0].base_stat}` ;
+                cardGroupCharacterInfo2.innerText += `\n Defense: ${characterTwo.stats[1].base_stat}`;
+                cardGroupCharacterInfo2.innerText += `\n Special Attack: ${characterTwo.stats[2].base_stat}`;
+                cardGroupCharacterInfo2.innerText += `\n Special Defense: ${characterTwo.stats[3].base_stat}`; 
+                cardGroupCharacterInfo2.innerText += `\n Speed: ${characterTwo.stats[4].base_stat}`;
+                resetChara1()
 
-                cardGroupCharacterName1.innerHTML = `${data.name.toUpperCase()}`;
-                cardGroupCharacterInfo1.innerText += `\n Height: ${data.height}'00"`;
-                cardGroupCharacterInfo1.innerText += `\n Weight: ${data.weight}lbs`;
-                cardGroupCharacterInfo1.innerText += `\n Type: ${data.types[0].type.name.toUpperCase()}`;
-                cardGroupCharacterInfo1.innerText += `\n Abilities: ${data.abilities[0].ability.name}`;
-                cardGroupCharacterInfo1.innerText += `\n Attack: ${data.stats[0].base_stat}` ;
-                cardGroupCharacterInfo1.innerText += `\n Defense: ${data.stats[1].base_stat}`;
-                cardGroupCharacterInfo1.innerText += `\n Special Attack: ${data.stats[2].base_stat}`;
-                cardGroupCharacterInfo1.innerText += `\n Special Defense: ${data.stats[3].base_stat}`; 
-                cardGroupCharacterInfo1.innerText += `\n Speed: ${data.stats[4].base_stat}`;
+                cardGroupCharacterName1.innerHTML = `${characterOne.name.toUpperCase()}`;
+                cardGroupCharacterInfo1.innerText += `\n Height: ${characterOne.height}'00"`;
+                cardGroupCharacterInfo1.innerText += `\n Weight: ${characterOne.weight}lbs`;
+                cardGroupCharacterInfo1.innerText += `\n Type: ${characterOne.types[0].type.name.toUpperCase()}`;
+                cardGroupCharacterInfo1.innerText += `\n Abilities: ${characterOne.abilities[0].ability.name}`;
+                cardGroupCharacterInfo1.innerText += `\n Attack: ${characterOne.stats[0].base_stat}` ;
+                cardGroupCharacterInfo1.innerText += `\n Defense: ${characterOne.stats[1].base_stat}`;
+                cardGroupCharacterInfo1.innerText += `\n Special Attack: ${characterOne.stats[2].base_stat}`;
+                cardGroupCharacterInfo1.innerText += `\n Special Defense: ${characterOne.stats[3].base_stat}`; 
+                cardGroupCharacterInfo1.innerText += `\n Speed: ${characterOne.stats[4].base_stat}`;
 
-
-               
+                userInput.style.display = ''
+                searchButton.style.display = ''
               })
             })
         })
@@ -345,48 +399,23 @@ searchButton.addEventListener('click', () => {
             
           })})})})
           userInput.value = "";
-//update
-          
+
+                  
+
+
+
+          function resetChara1(){
+            cardGroupCharacterName1.innerHTML = ""
+            cardGroupCharacterInfo1.innerText = ""
+            }
+            
+  
+            function resetChar2 (){
+              cardGroupCharacterName2.innerHTML = " "
+              cardGroupCharacterInfo2.innerText = " "
+              
+            }
 
           /*
           MAIN ISSUES
           // */
-
-//functions// 
-
-          function resetChara1(){
-          cardGroupCharacterName1.innerHTML = ""
-          cardGroupCharacterInfo1.innerText = ""
-          cardGroupCharacterInfo1.innerText = ""
-          cardGroupCharacterInfo1.innerText = ""
-          cardGroupCharacterInfo1.innerText = ""
-          cardGroupCharacterInfo1.innerText = ""
-          cardGroupCharacterInfo1.innerText = ""
-          cardGroupCharacterInfo1.innerText = ""
-          cardGroupCharacterInfo1.innerText = ""
-          cardGroupCharacterInfo1.innerText = ""
-          }
-          
-
-          function resetChar2 (){
-            cardGroupCharacterName2.innerHTML = " "
-            cardGroupCharacterInfo2.innerText = " "
-            cardGroupCharacterInfo2.innerText = " "
-            cardGroupCharacterInfo2.innerText = " "
-            cardGroupCharacterInfo2.innerText = " "
-            cardGroupCharacterInfo2.innerText = " "
-            cardGroupCharacterInfo2.innerText = " "
-            cardGroupCharacterInfo2.innerText = " "
-            cardGroupCharacterInfo2.innerText = " "
-            cardGroupCharacterInfo2.innerText = " "
-          }
-
-          /*
-          MAIN ISSUES
-
-  
-
-
-
-
-          */
