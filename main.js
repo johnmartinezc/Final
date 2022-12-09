@@ -77,8 +77,8 @@ searchButton.addEventListener('click', () => {
   fetch(`https://pokeapi.co/api/v2/pokemon/${userInput.value}`)
         .then(function(response){
           if(userInput.value >= 906){
-            submitInput.innerText = "Pokemon's over 905 are currently not available"
-              }
+            submitInput.innerText = "Pokemon's over 899 are currently not available or have no moves currently "
+        }
               return response.json()
         })
         .then(function(data){
@@ -199,7 +199,7 @@ searchButton.addEventListener('click', () => {
           //making the card visible
           
           //characters characterOne
-          resetChara1()
+          resetChar1()
           cardGroupCharacterName1.innerHTML = `${characterOne.name.toUpperCase()}`;
           cardGroupCharacterInfo1.innerText += `\n Height: ${characterOne.height}'00"`;
           cardGroupCharacterInfo1.innerText += `\n Weight: ${characterOne.weight}lbs`;
@@ -232,12 +232,13 @@ searchButton.addEventListener('click', () => {
               fetch(`https://pokeapi.co/api/v2/pokemon/${userInput2.value}`)
               .then(function(response2){
                 if(userInput.value >= 906){
-                  submitInput.innerText = "Pokemon's over 905 are currently not available"
+                  submitInput.innerText = "Pokemon's over 899 are currently not available or have no moves currently "
                     }
                     return response2.json()
               })
               .then(function(data2){
                 console.log(data2);
+                
                 characterTwo = data2
 
                 submitInput.innerText = ''
@@ -290,7 +291,7 @@ searchButton.addEventListener('click', () => {
               //resetting images
               cardGroupImg.src = characterOne.sprites.front_shiny;
               cardGroupImg2.src = characterTwo.sprites.front_shiny;
-              // resetChara1()
+              resetChar1()
               
               cardGroupCharacterName1.innerHTML = `${characterOne.name.toUpperCase()} Moves: \n`;
               cardGroupCharacterInfo1.innerText += `\n${characterOne.moves[0].move.name.toUpperCase()} `;
@@ -378,7 +379,7 @@ searchButton.addEventListener('click', () => {
                 cardGroupCharacterInfo2.innerText += `\n Special Attack: ${characterTwo.stats[2].base_stat}`;
                 cardGroupCharacterInfo2.innerText += `\n Special Defense: ${characterTwo.stats[3].base_stat}`; 
                 cardGroupCharacterInfo2.innerText += `\n Speed: ${characterTwo.stats[4].base_stat}`;
-                resetChara1()
+                resetChar1()
 
                 cardGroupCharacterName1.innerHTML = `${characterOne.name.toUpperCase()}`;
                 cardGroupCharacterInfo1.innerText += `\n Height: ${characterOne.height}'00"`;
@@ -405,7 +406,7 @@ searchButton.addEventListener('click', () => {
 
 
 
-          function resetChara1(){
+          function resetChar1(){
             cardGroupCharacterName1.innerHTML = ""
             cardGroupCharacterInfo1.innerText = ""
             }
